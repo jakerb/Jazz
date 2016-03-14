@@ -1,25 +1,27 @@
 body {
-	background: $isChrome;
+	background: _isChrome;
 }
 
 html,
 body {
 	padding: 10px;
 	margin: 0px;
-	border: [scope.numb * 2]px solid;
+	border: [_.number * 2]px solid;
+	height: _bodyHeight;
 }
 
 .box {
 	width: 20px;
 	height: 20px;
-	border: 1px solid [scope.boxColor];
-	position: [scope.pos];
+	border: 1px solid [_.boxColor];
+	position: [_.pos];
 }
 
 
 /* Set Jazz Variables */
 jazz {
-	set: [scope.numb = 1];
-	if: [if(scope.statement == true) scope.pos = 'relative' ];
-	if: [if(scope.statement != true) scope.pos = 'absolute' ];
+	if: [if(_.statement == true) _.pos = 'relative' ];
+	if: [if(_.statement != true) _.pos = 'absolute' ];
+	set: [_.number = 1];
+	set: [_.statement = true];
 }

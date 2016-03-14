@@ -49,7 +49,7 @@ var jazz = {
 						var tmp = point_[x].split(':');
 						tmp[1] = $.trim(tmp[1]);
 
-						var scope = this.scope;
+						var _ = this.scope;
 
 						if(tmp[1].substring(0,1) == this.variable && this.scope[tmp[1].substr(1, tmp[1].length)]) {
 							tmp[1] = this.scope[tmp[1].substr(1, tmp[1].length)];
@@ -112,7 +112,7 @@ jazz.styleLink = 'style[data-type="jazz"]';
 jazz.linkType = 'jazz/css';
 jazz.splitter = '}';
 jazz.openSplitter = '{';
-jazz.variable = '$';
+jazz.variable = '_';
 jazz.resources = [];
 jazz.isReady = false;
 jazz.params = [];
