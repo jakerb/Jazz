@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="jazz/css" href="style.jazz">
+	<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+	<script src="jazz.js"></script>
+	<script>
+
+		jazz.prop('bodyBG', '#fff');
+		jazz.scope.numb = 1;
+		jazz.scope.color = 'green';
+
+		setTimeout(function() {
+			jazz.prop('bodyBG', '#eee');
+		}, 1000);
+
+		jazz.ready(function() {
+			if(jazz.get('body', 'background') == '#eee') {
+				jazz.prop('bodyBG', 'red');
+			} else {
+				jazz.prop('bodyBG', 'white');
+			}
+		});
+
+	</script>
+	
+</head>
+<body>
+	
+</body>
+</html>

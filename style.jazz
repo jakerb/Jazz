@@ -1,0 +1,11 @@
+body {
+	background: $bodyBG;
+}
+
+html,
+body {
+	padding: 10px;
+	margin: 0px;
+	border: [scope.numb * 2]px solid green;
+	background: [if(scope.numb == 10) scope.color ];
+}
