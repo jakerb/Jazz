@@ -1,3 +1,9 @@
+/* Set Jazz Variables */
+
+jazz {
+	set: [scope.numb = 1];
+}
+
 body {
 	background: $bodyBG;
 }
@@ -6,6 +12,6 @@ html,
 body {
 	padding: 10px;
 	margin: 0px;
-	border: [scope.numb * 2]px solid green;
-	background: [if(scope.numb == 10) scope.color ];
+	border: [scope.numb * 2]px solid;
+	background: [if(scope.isChrome) scope.chromeColors ];
 }

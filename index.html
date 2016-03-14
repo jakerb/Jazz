@@ -6,22 +6,22 @@
 	<link rel="jazz/css" href="style.jazz">
 	<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
 	<script src="jazz.js"></script>
+	
+	<!-- Jazz.js Demo -->
+
+	
+
 	<script>
 
-		jazz.prop('bodyBG', '#fff');
-		jazz.scope.numb = 1;
-		jazz.scope.color = 'green';
+		jazz.scope.border = 1;
+		jazz.scope.background = '#eee';
+		jazz.scope.isChrome = navigator.vendor == "Google Inc." ? true : false;
+		jazz.scope.chromeColors = 'green';
 
-		setTimeout(function() {
-			jazz.prop('bodyBG', '#eee');
-		}, 1000);
+		
 
 		jazz.ready(function() {
-			if(jazz.get('body', 'background') == '#eee') {
-				jazz.prop('bodyBG', 'red');
-			} else {
-				jazz.prop('bodyBG', 'white');
-			}
+			console.log(jazz.scope.isChrome);
 		});
 
 	</script>
