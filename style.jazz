@@ -5,7 +5,7 @@ jazz {
 }
 
 body {
-	background: $bodyBG;
+	background: $isChrome;
 }
 
 html,
@@ -13,5 +13,12 @@ body {
 	padding: 10px;
 	margin: 0px;
 	border: [scope.numb * 2]px solid;
-	background: [if(scope.isChrome) scope.chromeColors ];
 }
+
+.box {
+	width: 20px;
+	height: 20px;
+	border: 1px solid [scope.boxColor];
+}
+
+
