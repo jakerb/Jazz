@@ -60,6 +60,7 @@ var jazz = {
 							var eva = ev.replace('[', '');
 								eva = eva.replace(']', '');
 							tmp[1] = tmp[1].replace(ev, eval(eva));
+							console.log(eval(eva));
 						}
 
 

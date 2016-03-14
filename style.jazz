@@ -1,9 +1,3 @@
-/* Set Jazz Variables */
-
-jazz {
-	set: [scope.numb = 1];
-}
-
 body {
 	background: $isChrome;
 }
@@ -19,6 +13,13 @@ body {
 	width: 20px;
 	height: 20px;
 	border: 1px solid [scope.boxColor];
+	position: [scope.pos];
 }
 
 
+/* Set Jazz Variables */
+jazz {
+	set: [scope.numb = 1];
+	if: [if(scope.statement == true) scope.pos = 'relative' ];
+	if: [if(scope.statement != true) scope.pos = 'absolute' ];
+}
