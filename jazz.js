@@ -35,7 +35,7 @@ var jazz = {
 		var params = {};
 		e = e.split(that.splitter);
 
-		for (i = 0; i < e.length; i++) {
+		for (var i = e.length - 1; i >= 0; i--) {
 			if(e[i].length > 1) {
 				var style = $.trim(e[i].replace(/\n|\r/g, '')) + that.splitter;
 				var point = style.split(that.openSplitter);
@@ -44,15 +44,15 @@ var jazz = {
 
 				params[$.trim(point[0])] = [];
 
-				for (x = 0; x < point_.length; x++) {
+				for (var x = point_.length - 1; x >= 0; x--) {
 					if(point_[x].length > 1) {
 						var tmp = point_[x].split(':');
 						tmp[1] = $.trim(tmp[1]);
 
 						var _ = this.scope;
 
-						if(tmp[1].substring(0,2) == this.variable && this.scope[tmp[1].substr(2, tmp[1].length)]) {
-							tmp[1] = this.scope[tmp[1].substr(2, tmp[1].length)];
+						if(tmp[1].substring(0,1) == this.variable && this.scope[tmp[1].substr(1, tmp[1].length)]) {
+							tmp[1] = this.scope[tmp[1].substr(1, tmp[1].length)];
 						}
 
 						if(tmp[1].indexOf('[') != -1 && tmp[1].indexOf(']')) {
@@ -60,6 +60,7 @@ var jazz = {
 							var eva = ev.replace('[', '');
 								eva = eva.replace(']', '');
 							tmp[1] = tmp[1].replace(ev, eval(eva));
+							console.log(eval(eva));
 						}
 
 
@@ -111,7 +112,7 @@ jazz.styleLink = 'style[data-type="jazz"]';
 jazz.linkType = 'jazz/css';
 jazz.splitter = '}';
 jazz.openSplitter = '{';
-jazz.variable = '_.';
+jazz.variable = '_';
 jazz.resources = [];
 jazz.isReady = false;
 jazz.params = [];
