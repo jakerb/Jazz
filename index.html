@@ -4,28 +4,41 @@
 	<meta charset="UTF-8">
 	<title></title>
 	<link rel="jazz/css" href="style.jazz">
+	
+	<!-- Jazz.js VW Demo -->		
+	<div class="block">
+		<p>1</p>
+	</div>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est aperiam quia assumenda neque tempore maiores, placeat fugit, odio commodi cumque, impedit enim incidunt repellendus eum doloremque id, quisquam. Modi, qui!</p>
+	<!-- Jazz.js VH Demo -->
+
 	<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
 	<script src="jazz.js"></script>
-	
-	<!-- Jazz.js Demo -->
-			
-		<div class="box"></div>
-
-	<!-- Jazz.js Demo -->
-
 
 	<script>
-		jazz.scope.numb = 1;
-		jazz.scope.border = 1;
-		jazz.scope.background = '#eee';
-		jazz.scope.isChrome = navigator.vendor == "Google Inc." ? '#eee' : 'white';
-		jazz.scope.boxColor = '#aaa';
-		jazz.scope.bodyHeight = '100%';
-		jazz.scope.pos = '';
-		
-		jazz.ready(function() {
-			//Do something..
+
+		jazz.propCallback = function(k,v) {
+			$('.block p').text(v + 'px');
+		}
+
+		jazz.vwh = function() {
+			var vw = $(window).width() / 100;
+			var vh = $(window).height() / 100;
+
+			for (var i = 100; i >= 0; i--) {
+				eval("jazz.scope.vh" + i + " = " + (vh * i) + ";");
+				eval("jazz.scope.vw" + i + " = " + (vw * i) + ";");
+			};	
+
+		};	
+
+		jazz.vwh();
+
+		jazz.onResize(function() {
+			jazz.prop('vh100', $(window).height());
+			jazz.prop('vh50', $(window).height()/2);
 		});
+
 	</script>
 	
 </head>
