@@ -8,6 +8,7 @@ var jazz = {
 	prop:function(k,v) {
 		var that = this;
 		jazz.scope[k] = v;
+		that.propCallback(k,v);
 		that.loadResources();
 	},
 
@@ -35,7 +36,7 @@ var jazz = {
 		var params = {};
 		e = e.split(that.splitter);
 
-		for (var i = e.length - 1; i >= 0; i--) {
+		for (i = 0; i < e.length; i++) {
 			if(e[i].length > 1) {
 				var style = $.trim(e[i].replace(/\n|\r/g, '')) + that.splitter;
 				var point = style.split(that.openSplitter);
@@ -44,15 +45,15 @@ var jazz = {
 
 				params[$.trim(point[0])] = [];
 
-				for (var x = point_.length - 1; x >= 0; x--) {
+				for (x = 0; x < point_.length; x++) {
 					if(point_[x].length > 1) {
 						var tmp = point_[x].split(':');
 						tmp[1] = $.trim(tmp[1]);
 
-						var _ = this.scope;
+						var $$ = this.scope;
 
-						if(tmp[1].substring(0,1) == this.variable && this.scope[tmp[1].substr(1, tmp[1].length)]) {
-							tmp[1] = this.scope[tmp[1].substr(1, tmp[1].length)];
+						if(tmp[1].substring(0,3) == this.variable && this.scope[tmp[1].substr(that.variable.length, tmp[1].length)]) {
+							tmp[1] = this.scope[tmp[1].substr(that.variable.length, tmp[1].length)];
 						}
 
 						if(tmp[1].indexOf('[') != -1 && tmp[1].indexOf(']')) {
@@ -60,7 +61,6 @@ var jazz = {
 							var eva = ev.replace('[', '');
 								eva = eva.replace(']', '');
 							tmp[1] = tmp[1].replace(ev, eval(eva));
-							console.log(eval(eva));
 						}
 
 
@@ -81,12 +81,34 @@ var jazz = {
 			css += '}';
 		});
 
+		$('head style[data-type="jazz"]').remove();
 		$('head').append('<style data-type="jazz">'+css+'</style>');
 
 		jazz.isReady = true;
 
+		$.each(that.complete, function(k,v) {
+			v();
+		});
 
 
+	},
+
+	onComplete:function(func) {
+		var that = this;
+		jazz.complete.push(func);
+	},
+
+	onResize:function(func) {
+		var that = this;
+		jazz.ready(function() {
+			
+			$(window).on('resize', function() {
+				setTimeout(function() {
+					func();	
+				}, 70);
+				
+			});
+		});
 	},
 
 	ready:function(func) {
@@ -112,9 +134,15 @@ jazz.styleLink = 'style[data-type="jazz"]';
 jazz.linkType = 'jazz/css';
 jazz.splitter = '}';
 jazz.openSplitter = '{';
-jazz.variable = '_';
+jazz.variable = '$$.';
 jazz.resources = [];
 jazz.isReady = false;
 jazz.params = [];
-jazz.scope = {};
+jazz.complete = [];
+jazz.propCallback = function() {};
+jazz.scope = {
+	winWidth: $(window).width(),
+	winHeight: $(window).height()
+
+};
 jazz.init();
