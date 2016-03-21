@@ -1,45 +1,25 @@
-/* Set Jazz Variables */
-jazz {
-	if: [if(_.statement == true) _.pos = 'relative' ];
-	if: [if(_.statement != true) _.pos = 'absolute' ];
-	set: [_.number = 0];
-	set: [_.statement = true];
-	set: [_.columnA = 49.9858493];
-	set: [_.columnB = _.column - _.columnA];
-	
-}
-
-body {
-	background: _.isChrome;
-}
+/* Jazz.js */
 
 html,
 body {
 	padding: 0px;
 	margin: 0px;
-	border: [_.number * 2]px solid;
-	height: _.bodyHeight;
+	width: 100%;
+	height: 100%;
 }
 
-.box {
-	width: 20px;
-	height: 20px;
-	border: 1px solid [_.boxColor];
-	position: _.pos;
+.block {
+	height: [$$.vh100]px;
+	width: 100%;
+	text-align: center;
+	background: rgba(0,0,0,0.3);
+	margin: 0;
+	padding: 0;
 }
 
-.column-a {
-	background: #555;
-	height: 300px;
-	display: inline-block;
-	float: left;
-	width: [_.columnA]%;
-}
-
-.column-b {
-	background: #444;
-	height: 300px;
-	display: inline-block;
-	float: left;
-	width: [_.columnB]%;
+.block p {
+	position: relative;
+	padding: 0;
+	margin: 0;
+	top: [$$.vh50]px;
 }
